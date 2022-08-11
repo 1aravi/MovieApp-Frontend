@@ -12,7 +12,7 @@ import CardActions from '@mui/material/CardActions';
 
 
 
-export function Movie({ movie, id }) {
+export function Movie({ movie, id, deleteButton, editButton }) {
   const styles = {
     color: movie.rating > 8 ? "green" : "red",
   };
@@ -51,7 +51,7 @@ export function Movie({ movie, id }) {
       </CardContent>
 
       <CardActions>
-      <Counter />
+      <Counter /> {deleteButton} {editButton}
       </CardActions>
 
     </Card>

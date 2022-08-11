@@ -17,6 +17,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
+import { API } from "./global";
 
 
 
@@ -121,9 +122,9 @@ export default function App() {
 // {name:"Mohan", pic:"https://1.bp.blogspot.com/-OUtpaIR5QhI/YTuyWw8XvtI/AAAAAAAAuUk/ZtNLZvNSoL8pyaYESOjwReXEhYu1zFltgCLcBGAsYHQ/s1536/Best-Profile-Pic-For-Boys%2B%252813%2529.jpg"}
 // ];
 
-fetch("https://62420226b6734894c14c7e0e.mockapi.io/Aravind/movies")
-.then((data) => data.json())
-.then((mvs) => console.log("movies", mvs))
+// fetch("https://62420226b6734894c14c7e0e.mockapi.io/Aravind/movies")
+// .then((data) => data.json())
+// .then((mvs) => console.log("movies", mvs))
 
 
   return (
@@ -149,7 +150,7 @@ fetch("https://62420226b6734894c14c7e0e.mockapi.io/Aravind/movies")
           <Button color="inherit" onClick={()=> navigate ("/movies")}>Movies</Button>
           <Button color="inherit" onClick={()=> navigate ("/color-game")}>Color Game</Button>
           <Button color="inherit" onClick={()=> navigate ("/movies/add")}>Add Movie</Button>
-          <Button startIcon = {mode === "light" ? <Brightness4Icon /> : <Brightness7Icon />} color="inherit" onClick={()=> setMode (mode === "light" ? "dark" : "light")}>
+          <Button style={{marginLeft: "auto"}} startIcon = {mode === "light" ? <Brightness4Icon /> : <Brightness7Icon />} color="inherit" onClick={()=> setMode (mode === "light" ? "dark" : "light")}>
             {mode === "light" ? "dark" : "light"} Mode
             
             </Button>
@@ -195,6 +196,7 @@ function AddMovie ({movieList, setMovieList}){
   const [rating, setRating] = useState("");
   const [trailer, setTrailer] = useState("");
 
+  const navigate = useNavigate();
   const addMovie = () => {
     const newMovie = {
       name,
@@ -203,6 +205,14 @@ function AddMovie ({movieList, setMovieList}){
       poster,
       trailer,
     };
+    fetch(`${API}/movies`, {
+method: "POST",
+body: JSON.stringify(newMovie),
+headers:{
+  "content-Type": "application/json",
+},
+    }).then(() => navigate("/movies"))
+
     console.log(newMovie);
     setMovieList([...movieList, newMovie]);
   };
