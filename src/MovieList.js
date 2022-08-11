@@ -11,8 +11,8 @@ import EditIcon from '@mui/icons-material/Edit';
 export function MovieList() {
 
   const [movieList, setMovieList] = useState([]);
-    const getMovies = () =>{
-    fetch(`${API}/movies`,{
+    const getMovies = () => {
+    fetch(`${API}/movies`, {
       method: "GET",
     })
 .then((data) => data.json())

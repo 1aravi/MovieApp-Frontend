@@ -3,20 +3,21 @@ import { useNavigate, useParams } from "react-router-dom";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import {API} from "./global"
 
-export function MovieDetails() {
+export function MovieDetails({movieList}) {
   const { id } = useParams();
+  const movie = movieList[id];
  
-  console.log(id);
-  const [movie, setMovie] = useState({});
-  const getMovie = () =>{
-    fetch(`${API}/movies/${id}`,{
-    method: "GET",
-  })
+  console.log(movie);
+  // const [movie, setMovie] = useState([]);
+  // const getMovie = () =>{
+  //   fetch(`${API}/movies/${id}`,{
+  //   method: "GET",
+  // })
 
-  .then((data) => data.json())
-  .then((mv) => setMovie(mv));
-  }
-  useEffect(() => getMovie(), []);
+  // .then((data) => data.json())
+  // .then((mv) => setMovie(mv));
+  // }
+  // useEffect(() => getMovie(), []);
   const styles = {
     color: movie.rating > 8 ? "green" : "red",
   };
