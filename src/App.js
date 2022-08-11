@@ -207,7 +207,7 @@ function AddMovie ({movieList, setMovieList}){
     };
     fetch(`${API}/movies`, {
 method: "POST",
-body: JSON.stringify(newMovie),
+body: JSON.stringify(addMovie),
 headers:{
   "content-Type": "application/json",
 },
