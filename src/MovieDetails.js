@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import {API} from "./global"
 
-export function MovieDetails({ movieList }) {
+export function MovieDetails() {
   const { id } = useParams();
-  const movie = movieList[id];
-  console.log(movie);
+ 
+  console.log(id);
+  const [movie, setMovie] = useState({});
+  const getMovie = () =>{
+    fetch(`${API}/movies/${id}`,{
+    method: "GET",
+  })
 
+  .then((data) => data.json())
+  .then((mv) => setMovie(mv));
+  }
+  useEffect(() => getMovie(), []);
   const styles = {
     color: movie.rating > 8 ? "green" : "red",
   };
