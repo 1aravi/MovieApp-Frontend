@@ -211,7 +211,7 @@ body: JSON.stringify(newMovie),
 headers:{
   "content-Type": "application/json",
 },
-    }).then(() => navigate("/movies"))
+    }).then(() => navigate("/movies"));
 
     console.log(newMovie);
     setMovieList([...movieList, newMovie]);

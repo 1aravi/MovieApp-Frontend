@@ -8,9 +8,9 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
 
-export function MovieList() {
+export function MovieList({movieList, setMovieList}) {
 
-  const [movieList, setMovieList] = useState([]);
+  // const [movieList, setMovieList] = useState([]);
     const getMovies = () => {
     fetch(`${API}/movies`, {
       method: "GET",
